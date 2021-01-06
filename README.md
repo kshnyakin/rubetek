@@ -11,6 +11,8 @@ Things you may want to cover:
 
 * Configuration
 
+* Database type = sqlite3
+
 * Database creation
 
 * Database initialization
