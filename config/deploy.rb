@@ -29,7 +29,7 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache',
    'public/system', 'public/uploads'
 
 # Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :default_env, { path: "/home/deploy/rails-devops/.rbenv-vars }
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
