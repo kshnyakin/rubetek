@@ -1,13 +1,15 @@
 # README
 
-* Ruby version = 2.7.1
+Flat Relations Management: Сервис для управления отношениями в многоквартирном доме.
+
+* Ruby version = 3.0.0
 * Rails version = 6.0.0
 
 unused things
 
 * System dependencies
 * Configuration
-* Database type = sqlite3
+* Database type = postgreSQL
 * Database creation
 * Database initialization
 * How to run the test suite
