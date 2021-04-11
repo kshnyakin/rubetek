@@ -1,8 +1,8 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.16.0"
 
-set :application, "rails-devops"
-set :repo_url, "git@github.com:kshnyakin/rails-devops.git"
+set :application, "rfm"
+set :repo_url, "git@github.com:kshnyakin/frm.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
