@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @flat.number %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @flat.comment %>
+</p>
+
+<%= link_to 'Edit', edit_flat_path(@flat) %> |
+<%= link_to 'Back', flats_path %>

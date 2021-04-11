@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.16.0"
 
-set :application, "rfm"
+set :application, "frm"
 set :repo_url, "git@github.com:kshnyakin/frm.git"
 
 # Default branch is :master
@@ -21,7 +21,7 @@ set :deploy_to, "/home/deploy/#{fetch :application}"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/secrets.yml"#, "config/database.yml"
+append :linked_files, "config/secrets.yml", "config/database.yml"
 
 # Default value for linked_dirs is []
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 
