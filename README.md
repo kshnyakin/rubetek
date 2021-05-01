@@ -1,6 +1,6 @@
 # README
 
-Flat Relations Management: Сервис для управления отношениями в многоквартирном доме.
+Rubetek
 
 * Ruby version = 3.0.0
 * Rails version = 6.0.0
