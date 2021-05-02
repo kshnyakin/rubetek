@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.16.0"
 
-set :application, "frm"
+set :application, "rubetek"
 set :repo_url, "git@github.com:kshnyakin/rubetek.git"
 
 # Default branch is :master
