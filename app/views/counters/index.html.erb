@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Показания счетчиков</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Тип счетчика</th>
+      <th>Показание, м<sup>3</sup></th>
+      <th>Квартира</th>
+      <th>Дата показания</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @counters.each do |counter| %>
+      <tr>
+        <td><%= counter.water_type %></td>
+        <td><%= counter.value %></td>
+        <td><%= "#{counter.flat.address} (id = #{counter.flat_id})" %></td>
+        <td><%= "#{counter.created_at}" %></td>
+        <td><%= link_to 'Show', counter %></td>
+        <td><%= link_to 'Edit', edit_counter_path(counter) %></td>
+        <td><%= link_to 'Destroy', counter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Новое показание', new_counter_path %><br>
+<%= link_to 'На главную', root_path %>

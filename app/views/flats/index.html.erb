@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Flats</h1>
+<h1>Каталог квартир</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Number</th>
-      <th>Comment</th>
+      <th>Адрес</th>
+      <th>Комментарий</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,11 +14,11 @@
   <tbody>
     <% @flats.each do |flat| %>
       <tr>
-        <td><%= flat.number %></td>
+        <td><%= flat.address %></td>
         <td><%= flat.comment %></td>
-        <td><%= link_to 'Show', flat %></td>
-        <td><%= link_to 'Edit', edit_flat_path(flat) %></td>
-        <td><%= link_to 'Destroy', flat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Просмотр', flat %></td>
+        <td><%= link_to 'Редактирование', edit_flat_path(flat) %></td>
+        <td><%= link_to 'Удаление', flat, method: :delete, data: { confirm: "Вы действительно хотите удалить квартиру \"#{flat.address}\"?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,5 @@
 
 <br>
 
-<%= link_to 'New Flat', new_flat_path %>
+<%= link_to 'Добавить квартиру', new_flat_path %><br>
+<%= link_to 'На главную', root_path %>

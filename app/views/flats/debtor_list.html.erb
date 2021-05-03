@@ -1,0 +1,24 @@
+<h1>Отчет по задолженникам по внесению показаний</h1>
+
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th>Адрес</th>
+      <th>Горячая вода</th>
+      <th>Холодная вода</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @debtors.each do |debtor| %>
+      <tr>
+        <td><%= debtor[:flat].address %></td>
+        <td><%= debtor[:hot] %></td>
+        <td><%= debtor[:cold] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table
+
+<hr>
+<%= link_to 'На главную', root_path %>

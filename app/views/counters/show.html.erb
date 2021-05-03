@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @counter.water_type %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @counter.value %>
+</p>
+
+<p>
+  <strong>Flat:</strong>
+  <%= "#{@counter.flat.address} (id = #{@counter.flat_id})" %>
+</p>
+
+<%= link_to 'Edit', edit_counter_path(@counter) %> |
+<%= link_to 'Back', counters_path %>

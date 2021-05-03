@@ -1,0 +1,24 @@
+<h1>Отчет о последних показаниях счетчиков </h1>
+
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th>Адрес</th>
+      <th>Горячая вода, м<sup>3</sup></th>
+      <th>Холодная вод, м<sup>3</sup></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @last_counters.each do |counter| %>
+      <tr>
+        <td><%= counter[:address] %></td>
+        <td><%= "#{counter[:hot_value]} (#{counter[:last_hot_date]})" %></td>
+        <td><%= "#{counter[:cold_value]} (#{counter[:last_cold_date]})" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table
+
+<hr>
+<%= link_to 'На главную', root_path %>

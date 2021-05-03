@@ -1,14 +1,76 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Number:</strong>
-  <%= @flat.number %>
+  <strong>Адрес:</strong>
+  <%= @flat.address %>
 </p>
 
 <p>
-  <strong>Comment:</strong>
+  <strong>Комментарий:</strong>
   <%= @flat.comment %>
 </p>
 
-<%= link_to 'Edit', edit_flat_path(@flat) %> |
-<%= link_to 'Back', flats_path %>
+<h2>Показания счетчиков</h2>
+<hr>
+<h3>Горячая вода</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Тип счетчика</th>
+      <th>Показание, м<sup>3</sup></th>
+      <th>Квартира</th>
+      <th>Дата показания</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @hot_counters.each do |counter| %>
+      <tr>
+        <td><%= counter.water_type %></td>
+        <td><%= counter.value %></td>
+        <td><%= "#{counter.flat.address} (id = #{counter.flat_id})" %></td>
+        <td><%= "#{counter.created_at}" %></td>
+        <td><%= link_to 'Show', counter %></td>
+        <td><%= link_to 'Edit', edit_counter_path(counter) %></td>
+        <td><%= link_to 'Destroy', counter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+<%= link_to 'Новое показание горячей воды', new_counter_path(flat_id: @flat.id) %><br>
+
+
+<hr>
+<h3>Холодная вода</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Тип счетчика</th>
+      <th>Показание, м<sup>3</sup></th>
+      <th>Квартира</th>
+      <th>Дата показания</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cold_counters.each do |counter| %>
+      <tr>
+        <td><%= counter.water_type %></td>
+        <td><%= counter.value %></td>
+        <td><%= "#{counter.flat.address} (id = #{counter.flat_id})" %></td>
+        <td><%= "#{counter.created_at}" %></td>
+        <td><%= link_to 'Show', counter %></td>
+        <td><%= link_to 'Edit', edit_counter_path(counter) %></td>
+        <td><%= link_to 'Destroy', counter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Новое показание холодной воды', new_counter_path %><br>
+
+<hr>
+<%= link_to 'Редактировать', edit_flat_path(@flat) %> |
+<%= link_to 'Назад', flats_path %>
+

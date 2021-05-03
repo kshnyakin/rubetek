@@ -8,6 +8,9 @@ class FlatsController < ApplicationController
 
   # GET /flats/1 or /flats/1.json
   def show
+    counters = @flat.counters
+    @hot_counters = counters.where(water_type: :hot).order(:created_at)
+    @cold_counters = counters.where(water_type: :cold).order(:created_at)
   end
 
   # GET /flats/new
@@ -18,6 +21,52 @@ class FlatsController < ApplicationController
   # GET /flats/1/edit
   def edit
   end
+
+  def last_flat_counters
+    @last_counters = []
+    Flat.all.each do |flat|
+      counters = flat.counters
+      last_cold_counter = counters.where(water_type: :cold).last
+      
+      last_hot_counter = counters.where(water_type: :hot).last
+      puts "counters = #{counters.where(water_type: :hot).inspect}"
+      @last_counters << ({
+        address: flat.address,
+        
+        hot_value: last_hot_counter&.value || "нет данных",
+        last_hot_date: last_hot_counter&.created_at || "нет данных",
+        cold_value: last_cold_counter&.value || "нет данных",
+        last_cold_date: last_cold_counter&.created_at || "нет данных" ,
+
+      })
+
+    end
+  end
+
+  def debtor_list
+    @debtors = []
+    Flat.all.each do |flat|
+      debtor = {}
+      counters = Counter.where(flat_id: flat.id).where("created_at >= ?", Time.now.at_beginning_of_month)
+      hot_counters = counters.where(water_type: :hot)
+      cold_counters = counters.where(water_type: :cold)
+
+      if hot_counters.size < 1
+        debtor[:hot] = "отсутствуют показания горячей воды"
+      end
+
+      if cold_counters.size < 1
+        debtor[:cold] = "отсутствуют показания холодной воды"
+      end
+
+      if (debtor[:hot] || debtor[:cold])
+        debtor[:flat] = flat
+        @debtors << debtor
+      end
+    end
+  end
+
+
 
   # POST /flats or /flats.json
   def create
@@ -64,6 +113,6 @@ class FlatsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def flat_params
-      params.require(:flat).permit(:number, :comment)
+      params.require(:flat).permit(:address, :comment)
     end
 end

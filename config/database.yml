@@ -11,4 +11,8 @@ default: &default
 
 development:
   <<: *default
-  database: devpull_frm_dev
+  database: devpull_rebetek_dev
+
+test:
+  <<: *default
+  database: devpull_rebetek_test
