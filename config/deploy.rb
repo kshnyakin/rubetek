@@ -13,6 +13,28 @@ set :deploy_to, "/home/deploy/#{fetch :application}"
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
+namespace :deploy do
+   desc "reload the database with seed data"
+   task :seed do
+     on roles(:all) do
+       within current_path do
+         execute :bundle, :exec, 'rails', 'db:seed', 'RAILS_ENV=production'
+       end
+     end
+   end
+ end
+
+ namespace :deploy do
+   desc "reload the database with seed data"
+   task :reset do
+     on roles(:all) do
+       within current_path do
+         execute :bundle, :exec, 'rails', 'db:reset', 'RAILS_ENV=production'
+       end
+     end
+   end
+ end
+
 # You can configure the Airbrussh format using :format_options.
 # These are the defaults.
 # set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
