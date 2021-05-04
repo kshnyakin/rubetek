@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+  resources :users
   resources :counters
   root to: 'start#index'
   get '/last-counters', to: 'flats#last_flat_counters'

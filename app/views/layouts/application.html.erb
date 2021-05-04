@@ -10,6 +10,17 @@
   </head>
 
   <body>
+    
+    <% if user_signed_in? %> 
+      <%= link_to "Выйти (#{current_user.email})", destroy_user_session_path, :method => :delete %>
+      <br>
+      <% if current_user.is_admin %>
+        [ роль: администратор ]
+      <% else %>
+        [ роль: пользователь ]
+      <% end %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

@@ -17,11 +17,19 @@
   </div>
 
   <div class="field">
+    <%= form.label :user_id %>
+    <%= form.collection_select :user_id, User.order(:name), :id, :name %>
+  </div>
+  
+  <div class="field">
     <%= form.label :comment %>
     <%= form.text_area :comment %>
   </div>
 
+
+
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>

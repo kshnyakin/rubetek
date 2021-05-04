@@ -6,3 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 # flat = Flat.create({ number: 130, comment: "First system record" })
+user_admin = User.create({name: "Admin", email: "admin@admin.ru", password: "rubetek", password_confirmation: "rubetek", is_admin: true})

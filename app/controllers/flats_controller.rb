@@ -1,10 +1,18 @@
 class FlatsController < ApplicationController
   before_action :set_flat, only: %i[ show edit update destroy ]
+  before_action :all_flats, only: %i[ index debtor_list last_flat_counters ]
 
   # GET /flats or /flats.json
   def index
-    @flats = Flat.all
+    if current_user.is_admin
+      @flats = Flat.all
+    else
+      @flats = Flat.all.where(user_id: current_user.id)
+    end
+
   end
+
+
 
   # GET /flats/1 or /flats/1.json
   def show
@@ -24,7 +32,7 @@ class FlatsController < ApplicationController
 
   def last_flat_counters
     @last_counters = []
-    Flat.all.each do |flat|
+    @all_flats.each do |flat|
       counters = flat.counters
       last_cold_counter = counters.where(water_type: :cold).last
       
@@ -45,7 +53,7 @@ class FlatsController < ApplicationController
 
   def debtor_list
     @debtors = []
-    Flat.all.each do |flat|
+    @all_flats.each do |flat|
       debtor = {}
       counters = Counter.where(flat_id: flat.id).where("created_at >= ?", Time.now.at_beginning_of_month)
       hot_counters = counters.where(water_type: :hot)
@@ -109,10 +117,16 @@ class FlatsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_flat
       @flat = Flat.find(params[:id])
+      authorize @flat
     end
 
+    def all_flats
+      @all_flats = Flat.all
+      authorize @all_flats
+    end
+    
     # Only allow a list of trusted parameters through.
     def flat_params
-      params.require(:flat).permit(:address, :comment)
+      params.require(:flat).permit(:address, :comment, :user_id)
     end
 end

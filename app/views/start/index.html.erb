@@ -1,8 +1,19 @@
 <h1>Rubetek#test</h1>
 <p>Flat relations management</p>
-<%= link_to "Список квартир", flats_path %><br>
-<%= link_to "Список показаний", counters_path %><br>
-<h2>Отчеты</h2>
 <hr>
-<%= link_to "Отчет по последним показаниям счетчиков", last_counters_path %><br>
-<%= link_to "Отчет по жителям, которые не внесли показания счетчика", debtor_list_path %><br>
+
+
+
+
+<% if current_user.is_admin %> 
+  <h2>Справочники</h2>
+  <%= link_to "Список пользователей", users_path %><br>
+  <%= link_to "Список квартир", flats_path %><br>
+  <%= link_to "Список показаний", counters_path %><br>
+
+  <h2>Отчеты</h2>
+  <%= link_to "Отчет по последним показаниям счетчиков", last_counters_path %><br>
+  <%= link_to "Отчет по жителям, которые не внесли показания счетчика", debtor_list_path %>
+<% else %>
+<%= link_to "Список квартир", flats_path %><br>
+<% end %>
